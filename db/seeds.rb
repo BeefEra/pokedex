@@ -1,40 +1,43 @@
 require "poke-api-v2"
 require "json"
-require "httparty"
+require "net/http"
 
 Type.delete_all
 Pokemon.delete_all
 PokemonType.delete_all
+Move.delete_all
+PokemonMove.delete_all
 
 types = PokeApi.get(:type)
-pokemen = PokeApi.get(pokemon: { limit: 1500 })
+pokemen = PokeApi.get(pokemon: { limit: 50 })
 
 puts "Inserting types..."
 types.results.each do |t|
-  type_request = HTTParty.get("https://pokeapi.co/api/v2/type/#{t.name}/")
-  type_info = JSON.parse(type_request.body)
+  type_request = Net::HTTP.get(URI("https://pokeapi.co/api/v2/type/#{t.name}/"))
+  type_info = JSON.parse(type_request)
 
   type = Type.create(
     id:   type_info["id"],
     name: type_info["name"]
   )
 
-  # if type&.valid?
-  #   type_info["moves"].each do |m|
-  #     move = PokeApi.get(move: m["name"])
-  #     Move.find_or_create_by(
-  #       id:      move.id,
-  #       name:         move.name,
-  #       accuracy:     move.accuracy,
-  #       pp:           move.pp,
-  #       power:        move.power,
-  #       damage_class: move.damage_class.name,
-  #       priority:     move.priority,
-  #       move_type:    move.type.name,
-  #       type_id:      type.id
-  #     )
-  #   end
-  # end
+  if type&.valid?
+    puts "Inserting #{type_info["moves"].count} #{type_info["name"]} type moves..."
+    type_info["moves"].each do |m|
+      move = PokeApi.get(move: m["name"])
+      Move.find_or_create_by(
+        id:           move.id,
+        name:         move.name,
+        accuracy:     move.accuracy,
+        pp:           move.pp,
+        power:        move.power,
+        damage_class: move.damage_class.name,
+        priority:     move.priority,
+        move_type:    move.type.name,
+        type_id:      type.id
+      )
+    end
+  end
 end
 
 puts "Inserting #{pokemen.results.count} pokemon..."
@@ -62,5 +65,12 @@ pokemen.results.each do |p|
         type_name:    type.type.name
       )
     end
+
+    pokemon.moves.each do |move|
+      PokemonMove.create(
+        pokemon_name: pokeman.name,
+        move_name:    move.move.name
+      )
+  end
   end
 end

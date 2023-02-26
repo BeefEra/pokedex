@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_124810) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_141057) do
+  create_table "moves", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "accuracy"
+    t.integer "pp"
+    t.integer "power"
+    t.string "damage_class"
+    t.integer "priority"
+    t.string "move_type"
+    t.integer "type_id", null: false
+    t.index ["name"], name: "index_moves_on_name", unique: true
+    t.index ["type_id"], name: "index_moves_on_type_id"
+  end
+
+  create_table "pokemon_moves", force: :cascade do |t|
+    t.string "pokemon_name", null: false
+    t.string "move_name", null: false
+    t.index ["move_name"], name: "index_pokemon_moves_on_move_name"
+    t.index ["pokemon_name"], name: "index_pokemon_moves_on_pokemon_name"
+  end
+
   create_table "pokemon_types", force: :cascade do |t|
     t.string "pokemon_name", null: false
     t.string "type_name", null: false
@@ -38,4 +58,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_124810) do
     t.index ["name"], name: "index_types_on_name", unique: true
   end
 
+  add_foreign_key "moves", "types", on_delete: :cascade
 end
