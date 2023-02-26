@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: MyString
+  accuracy: 1
+  pp: 1
+  power: 1
+  damage_class: MyString
+  priority: 1
+  move_type: MyString
+  type: one
+
+two:
+  id: 1
+  name: MyString
+  accuracy: 1
+  pp: 1
+  power: 1
+  damage_class: MyString
+  priority: 1
+  move_type: MyString
+  type: two
