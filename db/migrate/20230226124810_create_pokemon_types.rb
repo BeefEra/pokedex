@@ -1,8 +1,10 @@
 class CreatePokemonTypes < ActiveRecord::Migration[7.0]
   def change
     create_table :pokemon_types do |t|
-      t.references :pokemon, null: false, foreign_key: { on_delete: :cascade }
-      t.references :type, null: false, foreign_key: { on_delete: :cascade }
+      t.string :pokemon_name, null: false
+      t.string :type_name, null: false
     end
+    add_index :pokemon_types, :pokemon_name
+    add_index :pokemon_types, :type_name
   end
 end
