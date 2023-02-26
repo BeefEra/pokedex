@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_141057) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_143122) do
+  create_table "abilities", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "effect"
+  end
+
   create_table "moves", force: :cascade do |t|
     t.string "name", null: false
     t.integer "accuracy"
@@ -22,6 +27,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_141057) do
     t.integer "type_id", null: false
     t.index ["name"], name: "index_moves_on_name", unique: true
     t.index ["type_id"], name: "index_moves_on_type_id"
+  end
+
+  create_table "pokemon_abilities", force: :cascade do |t|
+    t.string "pokemon_name", null: false
+    t.string "ability_name", null: false
+    t.index ["ability_name"], name: "index_pokemon_abilities_on_ability_name"
+    t.index ["pokemon_name"], name: "index_pokemon_abilities_on_pokemon_name"
   end
 
   create_table "pokemon_moves", force: :cascade do |t|
