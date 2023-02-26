@@ -1,0 +1,29 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  name: MyString
+  height: 1
+  weight: 1
+  sprite: MyText
+  hp: 1
+  attack: 1
+  defense: 1
+  special_attack: 1
+  special_defense: 1
+  speed: 1
+  base_experience: 1
+
+two:
+  id: 1
+  name: MyString
+  height: 1
+  weight: 1
+  sprite: MyText
+  hp: 1
+  attack: 1
+  defense: 1
+  special_attack: 1
+  special_defense: 1
+  speed: 1
+  base_experience: 1
