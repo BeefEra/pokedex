@@ -1,29 +1,31 @@
-<!-- inside app/views/welcome/index.html.erb -->
-<div class="collapse" id="navbarToggleExternalContent">
-  <div class="bg-dark p-4">
-    <h5 class="text-white h4">Collapsed content</h5>
-    <span class="text-muted">Toggleable via the navbar brand.</span>
-  </div>
-</div>
-<nav class="navbar navbar-dark bg-dark">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-</nav>
-
-<main>
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
+<div class="mt-3" id="pokemon">
+  <% @pokemen.in_groups_of(5) do |a, b, c, d, e| %>
+    <div class="row">
+      <div class="col">
+        <%=link_to(image_tag(a&.sprite, class: "img-thumbnail bg-light"), pokemon_path(a), class: "navbar-brand") %>
+        <p class="mb-0">#<%= "%04d" % [a&.id]  %></p>
+        <p class="fw-bold text-center fs-4"><%= a&.name.capitalize() %></p>
+      </div>
+      <div class="col">
+        <img src=<%= b&.sprite %> class="img-thumbnail bg-light" alt=<%= b&.name %>>
+        <p class="mb-0">#<%= "%04d" % [b&.id]  %></p>
+        <p class="fw-bold text-center fs-4"><%= b&.name.capitalize() %></p>
+      </div>
+      <div class="col">
+        <img src=<%= c&.sprite %> class="img-thumbnail bg-light" alt=<%= c&.name %>>
+        <p class="mb-0">#<%= "%04d" % [c&.id]  %></p>
+        <p class="fw-bold text-center fs-4"><%= c&.name.capitalize() %></p>
+      </div>
+      <div class="col">
+        <img src=<%= d&.sprite %> class="img-thumbnail bg-light" alt=<%= d&.name %>>
+        <p class="mb-0">#<%= "%04d" % [d&.id]  %></p>
+        <p class="fw-bold text-center fs-4"><%= d&.name.capitalize() %></p>
+      </div>
+      <div class="col">
+        <img src=<%= e&.sprite %> class="img-thumbnail bg-light" alt=<%= e&.name %>>
+        <p class="mb-0">#<%= "%04d" % [e&.id]  %></p>
+        <p class="fw-bold text-center fs-4"><%= e&.name.capitalize() %></p>
       </div>
     </div>
-  </section>
-</main>
+  <% end %>
+</div>

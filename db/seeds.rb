@@ -66,42 +66,42 @@ end
 
 puts "Inserting #{pokemen.count} pokemon..."
 pokemen.results.each do |p|
-  pokemon = PokeApi.get(pokemon: p.name)
+  pokemon = JSON.parse(Net::HTTP.get(URI("https://pokeapi.co/api/v2/pokemon/#{p.name}/")))
   pokeman = Pokemon.find_or_create_by(
-    id:              pokemon.id,
-    name:            pokemon.name,
-    height:          pokemon.height,
-    weight:          pokemon.weight,
-    sprite:          pokemon.sprites.front_default,
-    hp:              pokemon.stats[0].base_stat,
-    attack:          pokemon.stats[1].base_stat,
-    defense:         pokemon.stats[2].base_stat,
-    special_attack:  pokemon.stats[3].base_stat,
-    special_defense: pokemon.stats[4].base_stat,
-    speed:           pokemon.stats[5].base_stat,
-    base_experience: pokemon.base_experience
+    id:              pokemon["id"],
+    name:            pokemon["name"].capitalize(),
+    height:          pokemon["height"],
+    weight:          pokemon["weight"],
+    sprite:          pokemon["sprites"]["other"]["official-artwork"]["front_default"],
+    hp:              pokemon["stats"][0]["base_stat"],
+    attack:          pokemon["stats"][1]["base_stat"],
+    defense:         pokemon["stats"][2]["base_stat"],
+    special_attack:  pokemon["stats"][3]["base_stat"],
+    special_defense: pokemon["stats"][4]["base_stat"],
+    speed:           pokemon["stats"][5]["base_stat"],
+    base_experience: pokemon["base_experience"]
   )
 
   if (pokeman&.valid?)
-    pokemon.types.each do |type|
+    pokemon["types"].each do |type|
       PokemonType.create(
         pokemon_name: pokeman.name,
-        type_name:    type.type.name
+        type_name:    type["type"]["name"]
       )
     end
 
-    pokemon.moves.each do |move|
+    pokemon["moves"].each do |move|
       PokemonMove.create(
         pokemon_name: pokeman.name,
-        move_name:    move.move.name
+        move_name:    move["move"]["name"]
       )
     end
 
-    pokemon.abilities.each do |ability|
+    pokemon["abilities"].each do |ability|
       PokemonAbility.create(
         pokemon_name: pokeman.name,
-        ability_name: ability.ability.name,
-        hidden:       ability.is_hidden
+        ability_name: ability["ability"]["name"],
+        hidden:       ability["is_hidden"]
       )
     end
   end
