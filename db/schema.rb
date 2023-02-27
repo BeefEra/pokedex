@@ -10,11 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_26_153048) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_26_143122) do
   create_table "abilities", force: :cascade do |t|
     t.string "name", null: false
     t.text "effect"
-    t.text "short_description"
   end
 
   create_table "moves", force: :cascade do |t|
@@ -33,7 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_26_153048) do
   create_table "pokemon_abilities", force: :cascade do |t|
     t.string "pokemon_name", null: false
     t.string "ability_name", null: false
-    t.boolean "hidden"
     t.index ["ability_name"], name: "index_pokemon_abilities_on_ability_name"
     t.index ["pokemon_name"], name: "index_pokemon_abilities_on_pokemon_name"
   end

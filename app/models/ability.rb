@@ -1,4 +1,4 @@
-class Ability < ApplicationRecord
+class Ability <
   has_many :pokemon_abilities, dependent: :destroy
   has_many :pokemons, through: :pokemon_abilities
   validates :name, presence: true

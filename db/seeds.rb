@@ -7,14 +7,11 @@ Pokemon.delete_all
 PokemonType.delete_all
 Move.delete_all
 PokemonMove.delete_all
-Ability.delete_all
-PokemonAbility.delete_all
 
 types = PokeApi.get(:type)
 pokemen = PokeApi.get(pokemon: { limit: 50 })
-abilities = PokeApi.get(ability: { limit: 500 })
 
-puts "Inserting #{types.count} types..."
+puts "Inserting types..."
 types.results.each do |t|
   type_request = Net::HTTP.get(URI("https://pokeapi.co/api/v2/type/#{t.name}/"))
   type_info = JSON.parse(type_request)
@@ -43,28 +40,7 @@ types.results.each do |t|
   end
 end
 
-puts "Inserting #{abilities.count} abilities..."
-abilities.results.each do |a|
-  ability = PokeApi.get(ability: a.name)
-  long_effect = "no description availbable"
-  short_effect = "no description available"
-
-  ability.effect_entries.each do |e|
-    if e.language.name == "en"
-      long_effect = e.effect
-      short_effect = e.short_effect
-    end
-  end
-
-  Ability.find_or_create_by(
-    id:                ability.id,
-    name:              ability.name,
-    effect:            long_effect,
-    short_description: short_effect
-  )
-end
-
-puts "Inserting #{pokemen.count} pokemon..."
+puts "Inserting #{pokemen.results.count} pokemon..."
 pokemen.results.each do |p|
   pokemon = PokeApi.get(pokemon: p.name)
   pokeman = Pokemon.find_or_create_by(
@@ -95,14 +71,6 @@ pokemen.results.each do |p|
         pokemon_name: pokeman.name,
         move_name:    move.move.name
       )
-    end
-
-    pokemon.abilities.each do |ability|
-      PokemonAbility.create(
-        pokemon_name: pokeman.name,
-        ability_name: ability.ability.name,
-        hidden:       ability.is_hidden
-      )
-    end
+  end
   end
 end
