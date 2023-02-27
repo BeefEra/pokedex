@@ -11,7 +11,7 @@ Ability.delete_all
 PokemonAbility.delete_all
 
 types = PokeApi.get(:type)
-pokemen = PokeApi.get(pokemon: { limit: 50 })
+pokemen = PokeApi.get(pokemon: { limit: 500 })
 abilities = PokeApi.get(ability: { limit: 500 })
 
 puts "Inserting #{types.count} types..."
@@ -21,7 +21,7 @@ types.results.each do |t|
 
   type = Type.create(
     id:   type_info["id"],
-    name: type_info["name"]
+    name: type_info["name"].capitalize
   )
 
   if type&.valid?
@@ -30,13 +30,13 @@ types.results.each do |t|
       move = PokeApi.get(move: m["name"])
       Move.find_or_create_by(
         id:           move.id,
-        name:         move.name,
+        name:         move.name.capitalize,
         accuracy:     move.accuracy,
         pp:           move.pp,
         power:        move.power,
-        damage_class: move.damage_class.name,
+        damage_class: move.damage_class.name.capitalize,
         priority:     move.priority,
-        move_type:    move.type.name,
+        move_type:    move.type.name.capitalize,
         type_id:      type.id
       )
     end
@@ -46,8 +46,8 @@ end
 puts "Inserting #{abilities.count} abilities..."
 abilities.results.each do |a|
   ability = PokeApi.get(ability: a.name)
-  long_effect = "no description availbable"
-  short_effect = "no description available"
+  long_effect = "No description availbable"
+  short_effect = "No description available"
 
   ability.effect_entries.each do |e|
     if e.language.name == "en"
@@ -58,7 +58,7 @@ abilities.results.each do |a|
 
   Ability.find_or_create_by(
     id:                ability.id,
-    name:              ability.name,
+    name:              ability.name.capitalize,
     effect:            long_effect,
     short_description: short_effect
   )
@@ -69,7 +69,7 @@ pokemen.results.each do |p|
   pokemon = JSON.parse(Net::HTTP.get(URI("https://pokeapi.co/api/v2/pokemon/#{p.name}/")))
   pokeman = Pokemon.find_or_create_by(
     id:              pokemon["id"],
-    name:            pokemon["name"].capitalize(),
+    name:            pokemon["name"].capitalize,
     height:          pokemon["height"],
     weight:          pokemon["weight"],
     sprite:          pokemon["sprites"]["other"]["official-artwork"]["front_default"],
@@ -86,21 +86,21 @@ pokemen.results.each do |p|
     pokemon["types"].each do |type|
       PokemonType.create(
         pokemon_name: pokeman.name,
-        type_name:    type["type"]["name"]
+        type_name:    type["type"]["name"].capitalize
       )
     end
 
     pokemon["moves"].each do |move|
       PokemonMove.create(
         pokemon_name: pokeman.name,
-        move_name:    move["move"]["name"]
+        move_name:    move["move"]["name"].capitalize
       )
     end
 
     pokemon["abilities"].each do |ability|
       PokemonAbility.create(
         pokemon_name: pokeman.name,
-        ability_name: ability["ability"]["name"],
+        ability_name: ability["ability"]["name"].capitalize,
         hidden:       ability["is_hidden"]
       )
     end

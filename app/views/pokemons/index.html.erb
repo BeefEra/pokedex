@@ -1,31 +1,15 @@
 <div class="mt-3" id="pokemon">
-  <% @pokemen.in_groups_of(5) do |a, b, c, d, e| %>
-    <div class="row">
-      <div class="col">
-        <%=link_to(image_tag(a&.sprite, class: "img-thumbnail bg-light"), pokemon_path(a), class: "navbar-brand") %>
-        <p class="mb-0">#<%= "%04d" % [a&.id]  %></p>
-        <p class="fw-bold text-center fs-4"><%= a&.name.capitalize() %></p>
-      </div>
-      <div class="col">
-        <img src=<%= b&.sprite %> class="img-thumbnail bg-light" alt=<%= b&.name %>>
-        <p class="mb-0">#<%= "%04d" % [b&.id]  %></p>
-        <p class="fw-bold text-center fs-4"><%= b&.name.capitalize() %></p>
-      </div>
-      <div class="col">
-        <img src=<%= c&.sprite %> class="img-thumbnail bg-light" alt=<%= c&.name %>>
-        <p class="mb-0">#<%= "%04d" % [c&.id]  %></p>
-        <p class="fw-bold text-center fs-4"><%= c&.name.capitalize() %></p>
-      </div>
-      <div class="col">
-        <img src=<%= d&.sprite %> class="img-thumbnail bg-light" alt=<%= d&.name %>>
-        <p class="mb-0">#<%= "%04d" % [d&.id]  %></p>
-        <p class="fw-bold text-center fs-4"><%= d&.name.capitalize() %></p>
-      </div>
-      <div class="col">
-        <img src=<%= e&.sprite %> class="img-thumbnail bg-light" alt=<%= e&.name %>>
-        <p class="mb-0">#<%= "%04d" % [e&.id]  %></p>
-        <p class="fw-bold text-center fs-4"><%= e&.name.capitalize() %></p>
-      </div>
+   <%= paginate @pokemen %>
+
+  <div class="d-flex flex-wrap mx-n3 mt-3">
+    <% @pokemen.each do |pokemon| %>
+    <div class="w-25 px-3">
+      <%=link_to(image_tag(pokemon&.sprite, class: "img-thumbnail bg-light"), pokemon_path(pokemon), class: "navbar-brand") %>
+      <p class="mb-0">#<%= "%04d" % [pokemon&.id]  %></p>
+      <p class="fw-bold text-center fs-4"><%= pokemon&.name.capitalize() %></p>
     </div>
-  <% end %>
+    <% end %>
+  </div>
+
+  <%= paginate @pokemen %>
 </div>
