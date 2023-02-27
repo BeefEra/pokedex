@@ -4,7 +4,5 @@ Rails.application.routes.draw do
   resources :abilities
   resources :moves
   resources :types
-  resources :pokemons, only: %i[index show] do
-    resources :abilities
-  end
+  resources :pokemons, only: %i[index show]
 end

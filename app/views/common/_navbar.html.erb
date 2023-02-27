@@ -7,17 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav fs-5">
         <li class="nav-item">
-          <%# <a class="nav-link active" aria-current="page" href="#"></a> %>
-          <%= link_to "Pokémon", pokemons_path, class: "nav-link #{current_page?(pokemons_path) || current_page?(root_path) ? 'active' : ''}" %>
+          <%= active_link_to "Pokémon", pokemons_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Types", types_path, class: "nav-link #{current_page?(types_path) ? 'active' : ''}" %>
+          <%= active_link_to "Types", types_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Moves", moves_path, class: "nav-link #{current_page?(moves_path) ? 'active' : ''}" %>
+          <%= active_link_to "Moves", moves_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
-          <%= link_to "Abilities", abilities_path, class: "nav-link #{current_page?(abilities_path) ? 'active' : ''}" %>
+          <%= active_link_to "Abilities", abilities_path, class: "nav-link" %>
         </li>
       </ul>
     </div>
