@@ -1,33 +1,45 @@
 <div id="<%= dom_id pokemon %>">
-  <p>
-    <strong>Name:</strong>
+  <h2>
     <%= pokemon.name %>
-  </p>
-
-  <div class="me-3 fs-2">HP: <%= pokemon.hp %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="HP" aria-valuenow=<%= pokemon.hp %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width: <%= pokemon.hp * 100 / 255 %>%"></div>
+  </h2>
+  <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %>" class="border border-3 border-danger w-25" style="border-radius: 12px;">
+  <div class="fs-4">Type</div>
+  <div class="border border-3 border-danger w-25 m-auto d-flex justify-content-center fs-5" style="border-radius: 12px;">
+    <% pokemon.types.each do |type| %>
+    <div class="<%= type.name.downcase %>-type rounded-pill px-4 my-2 mx-3"><%= type.name %></div>
+    <% end %>
   </div>
-  <div class="me-3 fs-2">Attack: <%= pokemon.attack %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="Attack" aria-valuenow=<%= pokemon.attack %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.attack * 100 / 255 %>%; background-color: #ff7200"></div>
+  <div class="fs-4">Info</div>
+  <div class="border border-3 border-danger w-25 m-auto fs-5" style="border-radius: 12px;">
+    <div>Base XP: <%= pokemon.base_experience %></div>
+    <div>Height: <%= pokemon.height * 10 %>cm / <%= (pokemon.height / 3.048).round(2) %>ft</div>
+    <div>Weight: <%= pokemon.weight / 10 %>kg / <%= (pokemon.weight / 4.536).round(2) %>lbs</div>
   </div>
-  <div class="me-3 fs-2">Defense: <%= pokemon.defense %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="Defense" aria-valuenow=<%= pokemon.defense %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: <%= pokemon.defense * 100 / 255 %>%"></div>
+  <div class="fs-4">Base Stats</div>
+  <div class="fs-5 border border-3 border-danger d-inline-block w-25 p-2 text-start" style="border-radius: 12px;">
+    <div>HP: <%= pokemon.hp %></div>
+    <div class="progress" role="progressbar" aria-label="HP" aria-valuenow=<%= pokemon.hp %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width: <%= pokemon.hp * 100 / 255 %>%"></div>
+    </div>
+    <div>Attack: <%= pokemon.attack %></div>
+    <div class="progress" role="progressbar" aria-label="Attack" aria-valuenow=<%= pokemon.attack %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.attack * 100 / 255 %>%; background-color: #ff7200"></div>
+    </div>
+    <div>Defense: <%= pokemon.defense %></div>
+    <div class="progress" role="progressbar" aria-label="Defense" aria-valuenow=<%= pokemon.defense %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width: <%= pokemon.defense * 100 / 255 %>%"></div>
+    </div>
+    <div>Special Attack: <%= pokemon.special_attack %></div>
+    <div class="progress" role="progressbar" aria-label="Special Attack" aria-valuenow=<%= pokemon.special_attack %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.special_attack * 100 / 255 %>%"></div>
+    </div>
+    <div>Special Defense: <%= pokemon.special_defense %></div>
+    <div class="progress" role="progressbar" aria-label="Special Defense" aria-valuenow=<%= pokemon.special_defense %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: <%= pokemon.special_defense * 100 / 255 %>%"></div>
+    </div>
+    <div>Speed: <%= pokemon.speed %></div>
+    <div class="progress" role="progressbar" aria-label="Speed" aria-valuenow=<%= pokemon.speed %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
+      <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.speed * 100 / 255 %>%; background-color: #f20ea6;"></div>
+    </div>
   </div>
-  <div class="me-3 fs-2">Special Attack: <%= pokemon.special_attack %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="Special Attack" aria-valuenow=<%= pokemon.special_attack %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.special_attack * 100 / 255 %>%"></div>
-  </div>
-  <div class="me-3 fs-2">Special Defense: <%= pokemon.special_defense %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="Special Defense" aria-valuenow=<%= pokemon.special_defense %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width: <%= pokemon.special_defense * 100 / 255 %>%"></div>
-  </div>
-  <div class="me-3 fs-2">Speed: <%= pokemon.speed %></div>
-  <div class="progress w-50 my-2" role="progressbar" aria-label="Speed" aria-valuenow=<%= pokemon.speed %> aria-valuemin="0" aria-valuemax="255" style="height: 30px">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: <%= pokemon.speed * 100 / 255 %>%; background-color: #f20ea6;"></div>
-  </div>
-
-
 </div>

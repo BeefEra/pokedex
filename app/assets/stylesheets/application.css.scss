@@ -1,3 +1,83 @@
 $enable-negative-margins: true;
 
+.normal-type {
+  background-color: #A4ACAF;
+}
+
+.fire-type {
+  background-color: rgb(253, 125, 36);
+}
+
+.fighting-type {
+  background-color: #D56723;
+}
+
+.flying-type {
+
+}
+
+.poison-type {
+  background-color: #B97FC9;
+}
+
+.ground-type {
+
+}
+
+.rock-type {
+  background-color: #A38C21;
+}
+
+.bug-type {
+  background-color: #729F3F;
+}
+
+.ghost-type {
+  background-color: #7B62A3;
+}
+
+.steel-type {
+  background-color: #9EB7B8;
+}
+
+.water-type {
+  background-color: #4592C4;
+}
+
+.grass-type {
+  background-color: #9BCC50;
+}
+
+.electric-type {
+  background-color: #EED535;
+}
+
+.psychic-type {
+  background-color: #F366B9;
+}
+
+.ice-type {
+  background-color: #51C4E7;
+}
+
+.dragon-type {
+
+}
+
+.dark-type {
+  background-color: #707070;
+}
+
+.fairy-type {
+  background-color: #FDB9E9;
+}
+
+.unknown-type {
+
+}
+
+.shadow-type {
+  background-color: #3b1549;
+}
+
 @import "bootstrap";
