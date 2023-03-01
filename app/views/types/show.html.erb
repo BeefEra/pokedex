@@ -1,10 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<div class="text-center">
+  <%= render @type %>
 
-<%= render @type %>
-
-<div>
-  <%= link_to "Edit this type", edit_type_path(@type) %> |
   <%= link_to "Back to types", types_path %>
-
-  <%= button_to "Destroy this type", @type, method: :delete %>
 </div>

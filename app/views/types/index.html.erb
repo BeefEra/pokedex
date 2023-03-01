@@ -1,14 +1,12 @@
-<p style="color: green"><%= notice %></p>
+<div>
+  <h2 class="my-3">Types</h2>
 
-<h1>Types</h1>
-
-<div id="types">
-  <% @types.each do |type| %>
-    <%= render type %>
-    <p>
-      <%= link_to "Show this type", type %>
-    </p>
-  <% end %>
+  <div class="d-flex flex-wrap mx-n2" id="types">
+    <% @types.each do |type| %>
+      <% unless ["Unknown", "Shadow"].include? type.name %>
+        <%= link_to type.name, type, class: "#{type.name.downcase}-type text-decoration-none rounded-pill px-4 py-2 m-2 text-center type",  style: "width: 15%;" %>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New type", new_type_path %>

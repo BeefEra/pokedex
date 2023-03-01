@@ -1,12 +1,39 @@
 <div id="<%= dom_id type %>">
-  <p>
-    <strong>Id:</strong>
-    <%= type.id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= type.name %>
-  </p>
-
+  <h2 class="<%= type.name.downcase %>-type rounded-pill m-auto py-2" style="width: 15%;"><%= type.name %></h2>
+  <div class="text-start">
+    <div class="fs-3">Strengths</div>
+    <ul></ul>
+    <div class="fs-3">Weaknesses</div>
+    <ul></ul>
+  </div>
+  <div class="accordion my-3">
+    <div class="accordion-item border border-2 border-danger">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+          Pokémon
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="d-flex flex-wrap">
+          <% (type.pokemons.sort_by &:name).each do |pokemon| %>
+             <%= link_to pokemon.name, pokemon, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 12.5%;" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item border border-2 border-danger border-top-0">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed fs-4" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          Moves
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="d-flex flex-wrap">
+          <% (type.moves.sort_by &:name).each do |move| %>
+             <%= link_to move.name, move, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 12.5%;" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

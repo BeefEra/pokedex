@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_27_072638) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_01_174925) do
   create_table "abilities", force: :cascade do |t|
     t.string "name", null: false
     t.text "effect"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_27_072638) do
     t.integer "priority"
     t.string "move_type"
     t.integer "type_id", null: false
+    t.text "effect"
     t.index ["name"], name: "index_moves_on_name", unique: true
     t.index ["type_id"], name: "index_moves_on_type_id"
   end
