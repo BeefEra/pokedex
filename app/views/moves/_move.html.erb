@@ -1,47 +1,24 @@
 <div id="<%= dom_id move %>">
-  <p>
-    <strong>Id:</strong>
-    <%= move.id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= move.name %>
-  </p>
-
-  <p>
-    <strong>Accuracy:</strong>
-    <%= move.accuracy %>
-  </p>
-
-  <p>
-    <strong>Pp:</strong>
-    <%= move.pp %>
-  </p>
-
-  <p>
-    <strong>Power:</strong>
-    <%= move.power %>
-  </p>
-
-  <p>
-    <strong>Damage class:</strong>
-    <%= move.damage_class %>
-  </p>
-
-  <p>
-    <strong>Priority:</strong>
-    <%= move.priority %>
-  </p>
-
-  <p>
-    <strong>Move type:</strong>
-    <%= move.move_type %>
-  </p>
-
-  <p>
-    <strong>Type:</strong>
-    <%= move.type_id %>
-  </p>
-
+  <h2 class="text-center"><%= move.name %></h2>
+  <div class="m-auto border border-3 border-danger mb-2 w-50 fs-5" style="border-radius: 12px;">
+    <div class="px-3 py-1 d-flex justify-content-evenly" >
+      <div>Type: <%= link_to move.type.name, move.type, class: "type #{move.type.name.downcase}-type text-decoration-none rounded-pill px-4 text-center" %></div>
+      <div>Category: <%= move.damage_class %></div>
+    </div>
+    <div class="border-top border-3 border-danger px-3 py-1 d-flex justify-content-evenly">
+      <div>Power: <%= move.power %></div>
+      <div>PP: <%= move.pp %></div>
+      <div>Accuracy: <%= move.accuracy %>%</div>
+    </div>
+    <div class="border-top border-3 border-danger px-3 py-1">
+      <div>Description:</div>
+      <div><%= move.effect %></div>
+    </div>
+  </div>
+  <div class="text-center fs-4">Pokémon</div>
+  <div class="m-auto d-flex flex-wrap justify-content-start border border-3 border-danger mb-2 w-50" style="border-radius: 12px;">
+    <% (move.pokemons.sort_by &:name).each do |pokemon| %>
+      <%= link_to pokemon.name, pokemon, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 20%;" %>
+    <% end %>
+  </div>
 </div>

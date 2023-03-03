@@ -1,14 +1,31 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Moves</h1>
-
-<div id="moves">
-  <% @moves.each do |move| %>
-    <%= render move %>
-    <p>
-      <%= link_to "Show this move", move %>
-    </p>
-  <% end %>
+<div class="mt-3" id="moves">
+  <div class="d-flex justify-content-between">
+    <h2>Moves</h2>
+    <%= paginate @moves %>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Class</th>
+        <th scope="col">Power</th>
+        <th scope="col">PP</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @moves.each do |move| %>
+        <tr>
+          <th scope="row"><%= move.id %></th>
+          <td><%= link_to move.name, move, class: "link-danger text-decoration-none" %></td>
+          <td><%= move.type.name %></td>
+          <td><%= move.damage_class %></td>
+          <td><%= move.power %></td>
+          <td><%= move.pp %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-
-<%= link_to "New move", new_move_path %>
+<%= paginate @moves %>
