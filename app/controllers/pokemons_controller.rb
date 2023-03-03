@@ -4,6 +4,7 @@ class PokemonsController < ApplicationController
     # @pokemen = Pokemon.order(:id).page(params[:page]).per(40)
     @q = Pokemon.ransack(params[:q])
     @pokemen = @q.result.order(:id).page(params[:page]).per(40)
+    @types = Type.all
   end
 
   # GET /pokemons/1 or /pokemons/1.json
