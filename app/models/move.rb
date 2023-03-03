@@ -4,4 +4,8 @@ class Move < ApplicationRecord
   has_many :pokemons, through: :pokemon_moves
   validates :name, presence: true
   validates :name, uniqueness: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 end

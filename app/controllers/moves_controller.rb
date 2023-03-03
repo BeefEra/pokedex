@@ -3,7 +3,9 @@ class MovesController < ApplicationController
 
   # GET /moves or /moves.json
   def index
-    @moves =  Move.order(:id).page(params[:page]).per(100)
+    # @moves =  Move.order(:id).page(params[:page]).per(100)
+    @q = Move.ransack(params[:q])
+    @moves = @q.result.order(:id).page(params[:page]).per(100)
   end
 
   # GET /moves/1 or /moves/1.json
