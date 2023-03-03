@@ -6,7 +6,7 @@
   <div class="d-flex flex-wrap mx-n3 mt-3">
     <% @pokemen.each do |pokemon| %>
     <div class="w-25 px-3">
-      <%=link_to(image_tag(pokemon&.sprite, class: "pokemon mw-100 rounded bg-light"), pokemon_path(pokemon), class: "navbar-brand") %>
+      <%= link_to(image_tag(pokemon&.sprite, alt: pokemon.name, class: "pokemon mw-100 rounded bg-light"), pokemon_path(pokemon)) %>
       <p class="mb-0">#<%= "%04d" % [pokemon&.id]  %></p>
       <p class="fw-bold text-center fs-4"><%= pokemon&.name.capitalize() %></p>
     </div>
