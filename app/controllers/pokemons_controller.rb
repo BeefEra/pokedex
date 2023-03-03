@@ -1,8 +1,9 @@
 class PokemonsController < ApplicationController
   # GET /pokemons or /pokemons.json
   def index
-    # @pokemen = Pokemon.all
-    @pokemen = Pokemon.order(:id).page(params[:page]).per(40)
+    # @pokemen = Pokemon.order(:id).page(params[:page]).per(40)
+    @q = Pokemon.ransack(params[:q])
+    @pokemen = @q.result.order(:id).page(params[:page]).per(40)
   end
 
   # GET /pokemons/1 or /pokemons/1.json
@@ -13,6 +14,6 @@ class PokemonsController < ApplicationController
   private
   # Only allow a list of trusted parameters through.
   def pokemon_params
-    params.require(:pokemon).permit(:id, :name)
+    params.require(:pokemon).permit(:id, :name, :q)
   end
 end

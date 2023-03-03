@@ -1,0 +1,8 @@
+<%= search_form_for @q do |f| %>
+  <form role="search">
+    <div class="d-flex">
+      <%= f.search_field :name_cont, class: "form-control me-2", placeholder: "Search"  %>
+      <%= f.submit "Search", class: "btn btn-outline-light" %>
+    </div>
+  </form>
+<% end %>
