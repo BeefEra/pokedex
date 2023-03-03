@@ -1,7 +1,7 @@
 <%= search_form_for @q do |f| %>
   <div class="d-flex">
     <%= f.search_field :name_cont, class: "form-control me-2", placeholder: "Search"  %>
-    <%= f.collection_select :type_name, @types, :name, :name, include_blank: true %>
+    <!-- <%= f.collection_select :type_name, @types, :name, :name, include_blank: true %> -->
     <%= f.submit "Search", class: "btn btn-outline-danger" %>
   </div>
 <% end %>
