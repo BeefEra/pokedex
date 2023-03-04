@@ -5,6 +5,6 @@ class Ability < ApplicationRecord
   validates :name, uniqueness: true
 
   def self.ransackable_attributes(auth_object = nil)
-    ["name", "id", "type_name", "pokemon_abilities", "pokemon_moves", "pokemon_types", "types"]
+    ["name", "id", "pokemon_abilities", "pokemon_name"]
   end
 end
