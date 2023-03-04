@@ -11,8 +11,8 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
+        <th scope="col"><%= sort_link(@q, :id, "#", default_order: :asc, class: "text-decoration-none link-danger") %></th>
+        <th scope="col"><%= sort_link(@q, :name, default_order: :asc, class: "text-decoration-none link-danger") %></th>
         <th scope="col">Description</th>
       </tr>
     </thead>
