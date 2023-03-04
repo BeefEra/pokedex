@@ -1,7 +1,7 @@
-<%= search_form_for @q do |f| %>
+<%= search_form_for @q, class: "w-50" do |f| %>
   <div class="d-flex">
-    <%= f.search_field :name_cont, class: "form-control me-2", placeholder: "Search"  %>
-    <!-- <%= f.collection_select :type_name, @types, :name, :name, include_blank: true %> -->
+    <%= f.search_field :name_cont, class: "form-control", placeholder: "Search"  %>
+    <%= f.select(:type_name, Type.all.collect {|type| [type.name, type.name]}, { :include_blank => "Any Type" }, { class: "form-select mx-2 w-25" })%>
     <%= f.submit "Search", class: "btn btn-outline-danger" %>
   </div>
 <% end %>

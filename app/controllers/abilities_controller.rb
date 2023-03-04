@@ -1,7 +1,6 @@
 class AbilitiesController < ApplicationController
   # GET /abilities or /abilities.json
   def index
-    # @abilities = Ability.all
     @q = Ability.ransack(params[:q])
     @abilities = @q.result.order(:id).page(params[:page]).per(100)
   end
@@ -19,6 +18,6 @@ class AbilitiesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def ability_params
-    params.require(:ability).permit(:id, :name, :effect)
+    params.require(:ability).permit(:id, :name)
   end
 end
