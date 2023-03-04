@@ -48,6 +48,12 @@
       </div>
     </div>
   </div>
+  <div class="text-center fs-4">Abilities</div>
+  <div class="m-auto d-flex justify-content-evenly border border-3 border-danger mb-2" style="width: 53%; border-radius: 12px;">
+    <% @pokemon.abilities.each do |ability| %>
+      <%= link_to ability.name, ability, class: "p-1 fs-5 text-center text-decoration-none flex-cell w-100" %>
+    <% end %>
+  </div>
   <div class="text-center fs-4">Moves</div>
   <div class="m-auto d-flex flex-wrap justify-content-start border border-3 border-danger mb-2" style="width: 53%; border-radius: 12px;">
     <% (@pokemon.moves.sort_by &:name).each do |move| %>
