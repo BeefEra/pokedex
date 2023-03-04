@@ -4,9 +4,9 @@
       <h2>
         <%= pokemon.name %>
       </h2>
-      <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %>" class="border border-3 border-danger mw-100 mb-3" style="border-radius: 12px;">
+      <img src="<%= pokemon.sprite %>" alt="<%= pokemon.name %>" class="border border-3 border-danger mw-100 mb-2" style="border-radius: 12px;">
       <div class="fs-4">Info</div>
-      <div class="border border-3 border-danger fs-5 text-start ps-4" style="border-radius: 12px;">
+      <div class="border border-3 border-danger fs-5 text-start ps-4 py-1" style="border-radius: 12px;">
         <div>Base XP: <%= pokemon.base_experience %></div>
         <div>Height: <%= pokemon.height * 10 %>cm / <%= (pokemon.height / 3.048).round(2) %>ft</div>
         <div>Weight: <%= pokemon.weight / 10 %>kg / <%= (pokemon.weight / 4.536).round(2) %>lbs</div>
@@ -51,7 +51,7 @@
   <div class="text-center fs-4">Abilities</div>
   <div class="m-auto d-flex justify-content-evenly border border-3 border-danger mb-2" style="width: 53%; border-radius: 12px;">
     <% @pokemon.abilities.each do |ability| %>
-      <%= link_to ability.name, ability, class: "p-1 fs-5 text-center text-decoration-none flex-cell w-100" %>
+      <%= link_to ability.name, ability, class: "p-1 fs-5 text-center text-decoration-none ability-cell w-100" %>
     <% end %>
   </div>
   <div class="text-center fs-4">Moves</div>

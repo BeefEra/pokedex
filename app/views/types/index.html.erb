@@ -3,7 +3,7 @@
 
   <div class="d-flex flex-wrap mx-n2" id="types">
     <% @types.each do |type| %>
-      <% unless ["Unknown", "Shadow"].include? type.name %>
+      <% unless type.name == "Unknown" %>
         <%= link_to type.name, type, class: "#{type.name.downcase}-type text-decoration-none rounded-pill px-4 py-2 m-2 text-center type",  style: "width: 15%;" %>
       <% end %>
     <% end %>

@@ -14,11 +14,15 @@
         </button>
       </h2>
       <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="d-flex flex-wrap">
-          <% (type.pokemons.sort_by &:name).each do |pokemon| %>
-             <%= link_to pokemon.name, pokemon, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 12.5%;" %>
-          <% end %>
-        </div>
+        <% if type.pokemons.count > 0 %>
+          <div class="d-flex flex-wrap">
+            <% (type.pokemons.sort_by &:name).each do |pokemon| %>
+              <%= link_to pokemon.name, pokemon, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 12.5%;" %>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="fs-4">No Pokémon belong to this type!</div>
+        <% end %>
       </div>
     </div>
     <div class="accordion-item border border-2 border-danger border-top-0">

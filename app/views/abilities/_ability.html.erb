@@ -1,17 +1,19 @@
 <div id="<%= dom_id ability %>">
-  <p>
-    <strong>Id:</strong>
-    <%= ability.id %>
-  </p>
-
-  <p>
-    <strong>Name:</strong>
-    <%= ability.name %>
-  </p>
-
-  <p>
-    <strong>Effect:</strong>
-    <%= ability.effect %>
-  </p>
-
+  <h2 class="text-center"><%= ability.name %></h2>
+  <div class="w-50 fs-5 m-auto">
+    <div class="fs-4">Description:</div>
+    <div class="border border-3 border-danger px-3 py-1" style="border-radius: 12px;">
+      <div><%= ability.short_description %></div>
+    </div>
+    <div class="fs-4 my-2">Effect:</div>
+    <div class="border border-3 border-danger px-3 py-1" style="border-radius: 12px;">
+      <div><%= ability.effect %></div>
+    </div>
+    <div class="fs-4 my-2">Pokémon</div>
+    <div class="d-flex flex-wrap justify-content-start border border-3 border-danger mb-2" style="border-radius: 12px;">
+      <% (ability.pokemons.sort_by &:name).each do |pokemon| %>
+        <%= link_to pokemon.name, pokemon, class: "flex-cell p-1 text-start text-decoration-none",  style: "width: 20%;" %>
+      <% end %>
+    </div>
+  </div>
 </div>
